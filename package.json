@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --host $IP --port $PORT"
+    "start": "./node_modules/.bin/webpack-dev-server --host $IP --port $PORT",
+    "start-local": "./node_modules/.bin/webpack-dev-server --host 0.0.0.0"
   },
   "keywords": [],
   "author": "",

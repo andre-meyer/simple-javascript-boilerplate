@@ -67,7 +67,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/html/index.html'),
     }),
-    new webpack.EnvironmentPlugin(['NODE_ENV']),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
+    }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],

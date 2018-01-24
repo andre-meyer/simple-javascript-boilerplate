@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import qs from 'query-string'
 
+import { loadPlugins } from 'actions/plugins'
 import Register from 'components/Register'
+
+import { requestPlugins } from 'api'
 
 class App extends Component {
   constructor(props) {
@@ -9,7 +14,9 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleError = this.handleError.bind(this)
 
+    const params = qs.parse(location.search.slice(1))
     this.state = {
+      serial: params.serial,
       register: {
         username: 'Andre',
         plan: 2,
@@ -19,6 +26,10 @@ class App extends Component {
         }
       }
     }
+  }
+
+  componentWillMount() {
+    this.props.loadPlugins()
   }
 
   handleError(name, error) {
@@ -31,6 +42,10 @@ class App extends Component {
         } 
       } 
     })
+  }
+
+  handleAddPlugin(e) {
+    this.props.addPlugin({ id: Math.floor(Math.random() * 50), name: 'Something', price: Math.random() * 50 })
   }
 
   handleChange(e) {
@@ -51,10 +66,32 @@ class App extends Component {
           onChange={this.handleChange}
           onError={this.handleError}
         />
+        <p>{this.state.serial}</p>
+        {Object.keys(this.props.plugins).map((pluginId) => {
+          const plugin = this.props.plugins[pluginId]
+          return (
+            <div key={plugin.id}>
+              <p>{plugin.name}</p>
+              <p>{plugin.price.toFixed(2)} €</p>
+            </div>
+          )
+        })}
         <button type="submit" disabled={hasErrors}>Submit!</button>
       </div>
     )
   }
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return {
+    plugins: state.plugins,
+  }
+}
+
+const mapDispatchToProps = {
+  loadPlugins,
+}
+
+const connectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
+
+export default connectedApp

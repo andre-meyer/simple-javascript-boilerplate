@@ -1,0 +1,38 @@
+{
+  "plugins": [
+    {
+      "id": 1,
+      "name": "Testplugin",
+      "price": 12.99,
+      "billed": "monthly"
+    },
+    {
+      "id": 2,
+      "name": "Big Expensive Plugin",
+      "price": 99.99,
+      "billed": "monthly"
+    },
+    {
+      "id": 3,
+      "name": "Cheap Bad Plugin",
+      "price": 50.00,
+      "billed": "annually"
+    }
+  ],
+  "licenses": [
+    {
+      "owner": "Michael Müller",
+      "serial": "O9PYNOARB9DJPEZREGRZEOFXZZIBYWNG",
+      "plugin": 1, 
+      "dateValidFrom": 1516791918955,
+      "dateValidTo": 1519383949205
+    },
+    {
+      "owner": "LazyCompany Inc.",
+      "serial": "ZEX9WAUBZANGXJDFZCVEJUCHN9CKXRHE",
+      "plugin": 2,
+      "dateValidFrom": 1511607974770,
+      "dateValidTo": 1514199976337
+    }
+  ]
+}
